@@ -12,9 +12,11 @@ module Day01.Dial where
   task2 :: [Rotation] -> Dial -> SecretPassword
   task2 = accumulateSecretPassword dc 0
     where dc d d' (RotateRight i) a = if d + i > 99 then a + ((d + i) `div` 100) else a
-          dc d d' (RotateLeft i) a | d <= i && d' /= 0 = a + (abs ((d - i) `div` 100))
-                                   | d <= i && d /= 0 && d' == 0 = a + (abs ((d - i) `div` 100)) + 1
-                                   | otherwise = a
+          dc d d' (RotateLeft i) a = a + fullRotations + additionalCrossing
+            where
+              fullRotations = i `div` 100
+              partialRotation = i `mod` 100
+              additionalCrossing = if partialRotation >= d && d /= 0 then 1 else 0
 
   accumulateSecretPassword :: DialCounter -> Int -> [Rotation] -> Dial -> SecretPassword
   accumulateSecretPassword dc a [] d = a
