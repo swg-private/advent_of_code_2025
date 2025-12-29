@@ -7,16 +7,33 @@ Solutions for the following days exist in the following languages:
 | Day | Task 1 | Task 2 |
 |---|---|---|
 | 1 | Haskell | Haskell |
-| 2 | Haskell | - |
+| 2 | Haskell | Haskell |
+| 3 | - | - |
 
 ## How do I run the solutions?
 
-### Haskell
+The solutions of this year are (so far) all implemented in [Haskell](https://www.haskell.org/). 
+Previous years also included solutions implemented in Perl, I might also add solutions in C.
 
-Run `cabal build` to compile the given day and `cabal run` to run it from within the folder for the day.
+All days are separate [cabal](https://www.haskell.org/cabal/) project, and every day has a basic test
+suite with at least the sample input for each task.
 
-Sometimes there is a test suite that can be run with `cabal test`.
+A given day can be run from within the day's folder like this:
 
-### Perl
+```bash
+$ cabal run
+```
 
-Run `perl <script_name>.pl` from within the day's folder. Any more or less recent version will suffice.
+The unit tests are implemented using [HUnit](https://hackage.haskell.org/package/HUnit). 
+The test suite can be run with the following command:
+
+```bash
+$ cabal test
+```
+
+For convenience my puzzle input is also checked in as `input.txt`, but it will most likely
+differ from yours. Third party libraries are used where appropriate.
+
+## Links
+
+- [Advent of Code 2025](https://adventofcode.com/2025)
