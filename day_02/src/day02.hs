@@ -14,6 +14,9 @@ module Main where
     -- Task 1
     let result1 = task1 idRanges
     putResult1 today result1
+    -- Task 2
+    let result2 = task2 idRanges
+    putResult2 today result2
 
   parseIdRanges :: String -> [IdRange]
   parseIdRanges i = let
