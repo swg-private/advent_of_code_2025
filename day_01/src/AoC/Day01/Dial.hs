@@ -1,4 +1,4 @@
-module Day01.Dial where
+module AoC.Day01.Dial (Rotation(..), task1, task2) where
 
   type Dial = Int
   type DialCounter = Dial -> Dial -> Rotation -> Int -> Int

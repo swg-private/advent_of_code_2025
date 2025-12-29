@@ -1,6 +1,10 @@
 module Main where
 
-  import Day01.Dial
+  import AoC.Common.Output
+  import AoC.Day01.Dial
+
+  today :: Day
+  today = Day { year = 2025, day = 1 }
 
   main :: IO ()
   main = do
@@ -8,10 +12,10 @@ module Main where
     let rotations = parseRotations input
     -- Task 1
     let result1 = task1 rotations 50
-    putStrLn $ show result1
+    putResult1 today result1
     -- Task 2
     let result2 = task2 rotations 50
-    putStrLn $ show result2
+    putResult2 today result2
 
   parseRotations :: [String] -> [Rotation]
   parseRotations = map parseRotation

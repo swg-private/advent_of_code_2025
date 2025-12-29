@@ -1,7 +1,11 @@
 module Main where
 
   import Data.List.Split
-  import Day02.ProductIds
+  import AoC.Common.Output
+  import AoC.Day02.ProductIds
+
+  today :: Day
+  today = Day { year = 2025, day = 2 }
 
   main :: IO ()
   main = do
@@ -9,10 +13,10 @@ module Main where
     let idRanges = parseIdRanges input
     -- Task 1
     let result1 = task1 idRanges
-    putStrLn $ show result1
+    putResult1 today result1
 
   parseIdRanges :: String -> [IdRange]
   parseIdRanges i = let
-      toIdRange (x:y:[]) = (read x :: Int, read y :: Int)
-    in
-      map (toIdRange.(splitOn "-")) $ splitOn "," i
+                      toIdRange (x:y:[]) = (read x :: Int, read y :: Int)
+                    in
+                      map (toIdRange.(splitOn "-")) $ splitOn "," i

@@ -4,18 +4,19 @@ version:            0.1.0.0
 
 executable day02
     main-is:          day02.hs
-    other-modules:    Day02.ProductIds
+    other-modules:    AoC.Common.Output,
+                      AoC.Day02.ProductIds
     build-depends:    base ^>=4.17.0.0,
                       split
-    hs-source-dirs:   src
+    hs-source-dirs:   src, ../common/src
     default-language: Haskell2010
 
 test-suite test-day02
     type:             exitcode-stdio-1.0
     hs-source-dirs:   test, src
     main-is:          day02-test.hs
-    other-modules:    Day02.ProductIds,
-                      Day02.ProductIdsTest
+    other-modules:    AoC.Day02.ProductIds,
+                      AoC.Day02.ProductIdsTest
     build-depends:    base ^>=4.17.0.0,
                       split,
                       HUnit

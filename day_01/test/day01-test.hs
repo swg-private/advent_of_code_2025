@@ -1,7 +1,7 @@
 module Main where
   
-  import qualified Day01.DialTest
+  import qualified AoC.Day01.DialTest
 
   main :: IO ()
   main = do
-    Day01.DialTest.run
+    AoC.Day01.DialTest.run

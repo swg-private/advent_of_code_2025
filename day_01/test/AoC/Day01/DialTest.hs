@@ -1,7 +1,7 @@
-module Day01.DialTest where
+module AoC.Day01.DialTest where
 
   import Test.HUnit
-  import Day01.Dial
+  import AoC.Day01.Dial
 
   {-
   Tests that turn the dial to zero either clockwise or counterclockwise and turn the dial in either direction by 150.

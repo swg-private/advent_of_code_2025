@@ -1,7 +1,7 @@
-module Day02.ProductIdsTest where
+module AoC.Day02.ProductIdsTest where
 
   import Test.HUnit
-  import Day02.ProductIds
+  import AoC.Day02.ProductIds
 
   {-
   Task 1: Test with sample input.
