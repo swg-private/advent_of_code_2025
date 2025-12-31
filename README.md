@@ -8,7 +8,7 @@ Solutions for the following days exist in the following languages:
 |---|---|---|
 | 1 | Haskell | Haskell |
 | 2 | Haskell | Haskell |
-| 3 | - | - |
+| 3 | Haskell | - |
 
 ## How do I run the solutions?
 
