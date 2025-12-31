@@ -4,7 +4,7 @@ version:            0.1.0.0
 
 executable day02
     main-is:          day02.hs
-    other-modules:    AoC.Common.Output,
+    other-modules:    AoC.Common,
                       AoC.Day02.ProductIds
     build-depends:    base ^>=4.17.0.0,
                       split

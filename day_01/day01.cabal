@@ -4,7 +4,7 @@ version:            0.1.0.0
 
 executable day01
     main-is:          day01.hs
-    other-modules:    AoC.Common.Output,
+    other-modules:    AoC.Common,
                       AoC.Day01.Dial
     build-depends:    base ^>=4.17.0.0
     hs-source-dirs:   src, ../common/src

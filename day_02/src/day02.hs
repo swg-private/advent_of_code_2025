@@ -1,7 +1,7 @@
 module Main where
 
   import Data.List.Split
-  import AoC.Common.Output
+  import AoC.Common
   import AoC.Day02.ProductIds
 
   today :: Day
@@ -11,12 +11,7 @@ module Main where
   main = do
     input <- readFile "input.txt"
     let idRanges = parseIdRanges input
-    -- Task 1
-    let result1 = task1 idRanges
-    putResult1 today result1
-    -- Task 2
-    let result2 = task2 idRanges
-    putResult2 today result2
+    run today idRanges [task1, task2]
 
   parseIdRanges :: String -> [IdRange]
   parseIdRanges i = 

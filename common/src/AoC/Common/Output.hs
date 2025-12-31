@@ -2,9 +2,6 @@
 Module      : AoC.Common.Output
 Description : A set of common output functions for AoC tasks.
 Stability   : experimental
-
-All functionality used to print readable answers to the tasks are
-bundled here.
 -}
 module AoC.Common.Output (Day(..), putResult1, putResult2) where
 
