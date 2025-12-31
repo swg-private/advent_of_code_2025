@@ -1,3 +1,11 @@
+{-|
+Module      : AoC.Common.Output
+Description : A set of common output functions for AoC tasks.
+Stability   : experimental
+
+All functionality used to print readable answers to the tasks are
+bundled here.
+-}
 module AoC.Common.Output (Day(..), putResult1, putResult2) where
 
   data Day = Day { day :: Int, year :: Int }
@@ -6,7 +14,7 @@ module AoC.Common.Output (Day(..), putResult1, putResult2) where
   instance Show Day where
     show d = (show $ year d) ++ "-12-" ++ (show $ day d)
 
-  {-
+  {-|
   Pretty result printer for the solutions of any part of any day.
   -}
   putResult :: Show a => Part -> Day -> a -> IO ()

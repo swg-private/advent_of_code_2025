@@ -19,7 +19,8 @@ module Main where
     putResult2 today result2
 
   parseJoltages :: [String] -> GridJoltages
-  parseJoltages js = let
-                       toInt js = map (\j -> read j :: Int) js
-                     in
-                       map (toInt.(chunksOf 1)) js
+  parseJoltages js = 
+    let
+      toInt js = map (\j -> read j :: Int) js
+    in
+      map (toInt.(chunksOf 1)) js

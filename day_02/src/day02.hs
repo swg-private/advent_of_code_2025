@@ -19,7 +19,8 @@ module Main where
     putResult2 today result2
 
   parseIdRanges :: String -> [IdRange]
-  parseIdRanges i = let
-                      toIdRange (x:y:[]) = (read x :: Int, read y :: Int)
-                    in
-                      map (toIdRange.(splitOn "-")) $ splitOn "," i
+  parseIdRanges i = 
+    let
+      toIdRange (x:y:[]) = (read x :: Int, read y :: Int)
+    in
+      map (toIdRange.(splitOn "-")) $ splitOn "," i
