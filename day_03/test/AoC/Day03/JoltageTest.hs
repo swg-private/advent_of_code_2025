@@ -14,7 +14,22 @@ module AoC.Day03.JoltageTest where
   -}
   testTask1TaskSampleInput = TestCase (assertEqual "Task 1 sample input" 357 $ task1 sampleInput)
 
+  {-
+  Task 2: Test with sample input.
+  -}
+  testTask2TaskSampleInput = TestCase (assertEqual "Task 2 sample input" 3121910778619 $ task2 sampleInput)
+  {-
+  9121
+  9121
+  9121
+  9921
+  9992
+  -}
+  testTask2LocalMaximum = TestCase (assertEqual "Task 2 with local maximum" 988891112111 $ task2 [[9,8,1,1,1,8,1,8,1,9,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1]])
+
   tests = TestList [
-    TestLabel "Task 1 sample input" testTask1TaskSampleInput]
+    TestLabel "Task 1 sample input" testTask1TaskSampleInput,
+    TestLabel "Task 2 sample input" testTask2TaskSampleInput,
+    TestLabel "Task 2 local maximum" testTask2LocalMaximum]
 
   run = runTestTTAndExit tests

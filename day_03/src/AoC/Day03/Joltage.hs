@@ -45,4 +45,17 @@ module AoC.Day03.Joltage (GridJoltages(..), task1, task2) where
   In task 2 we want to enable 12 batteries per bank.
   -}
   task2 :: GridJoltages -> Int
-  task2 js = 0
+  task2 js = foldr bankJoltage 0 js
+    where
+      minIndex l = head $ dropWhile (\i -> (l!!i) /= (minimum l)) [0..(length l - 1)]
+      cleanList len js = 
+        if (length js) <= len 
+          then (len,js) 
+          else (len, (take (minIndex js) js) ++ (drop ((minIndex js) + 1) js))
+      accumulateBestJoltages b (len,(j:js)) = 
+        if b >= j || (length (j:js)) < len
+          then cleanList len (b:j:js)
+          else (len,(j:js))
+      accumulateBestJoltages b (len,[]) = (len, [b])
+      selectBankJoltage bs = snd $ foldr accumulateBestJoltages (12,[]) bs
+      bankJoltage bs acc = acc + (fst (foldr (\j (sum,exp) -> (sum + j*10^exp, exp+1)) (0,0) (selectBankJoltage bs)))
