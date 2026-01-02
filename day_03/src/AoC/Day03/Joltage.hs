@@ -23,39 +23,31 @@ For the full task see [Advent of Code](https://adventofcode.com/2025/day/3).
 -}
 module AoC.Day03.Joltage (GridJoltages(..), task1, task2) where
 
-  type BatteryJoltage = Int
-  type BankJoltages = [BatteryJoltage]
+  type BankSize = Int
+  type Joltage = Int
+  type BankJoltages = [Joltage]
   type GridJoltages = [BankJoltages]
 
   {-|
   In task 1 we want to enable two batteries per bank.
   -}
-  task1 :: GridJoltages -> Int
-  task1 js = foldr bankJoltage 0 js
-    where
-      accumulateBestJoltages i (0,0) = (0,i)
-      accumulateBestJoltages i (t,o) 
-        | i >= t && t > o = (i,t)
-        | i >= t && t <= o = (i,o)
-        | otherwise = (t,o)
-      selectBankJoltage bs = foldr accumulateBestJoltages (0,0) bs
-      bankJoltage bs acc = acc + ((fst $ selectBankJoltage bs) * 10) + (snd $ selectBankJoltage bs)
+  task1 :: GridJoltages -> Joltage
+  task1 = totalJoltage 2
 
   {-|
   In task 2 we want to enable 12 batteries per bank.
   -}
-  task2 :: GridJoltages -> Int
-  task2 js = foldr bankJoltage 0 js
-    where
-      minIndex l = head $ dropWhile (\i -> (l!!i) /= (minimum l)) [0..(length l - 1)]
-      cleanList len js = 
-        if (length js) <= len 
-          then (len,js) 
-          else (len, (take (minIndex js) js) ++ (drop ((minIndex js) + 1) js))
-      accumulateBestJoltages b (len,(j:js)) = 
-        if b >= j || (length (j:js)) < len
-          then cleanList len (b:j:js)
-          else (len,(j:js))
-      accumulateBestJoltages b (len,[]) = (len, [b])
-      selectBankJoltage bs = snd $ foldr accumulateBestJoltages (12,[]) bs
+  task2 :: GridJoltages -> Joltage
+  task2 = totalJoltage 12
+
+  totalJoltage :: BankSize -> GridJoltages -> Joltage
+  totalJoltage size js = foldr bankJoltage 0 js
+    where 
+      accumulateBestJoltages _ _ 0 = []
+      accumulateBestJoltages bs s len = 
+        let
+          idx = foldl (\acc b -> if bs!!b > bs!!acc then b else acc) s [s..(length bs - len)]
+        in
+          [bs!!idx] ++ (accumulateBestJoltages bs (idx+1) (len-1))
+      selectBankJoltage bs = accumulateBestJoltages bs 0 size
       bankJoltage bs acc = acc + (fst (foldr (\j (sum,exp) -> (sum + j*10^exp, exp+1)) (0,0) (selectBankJoltage bs)))
