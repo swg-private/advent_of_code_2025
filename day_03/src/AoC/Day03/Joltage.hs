@@ -41,13 +41,13 @@ module AoC.Day03.Joltage (GridJoltages(..), task1, task2) where
   task2 = totalJoltage 12
 
   totalJoltage :: BankSize -> GridJoltages -> Joltage
-  totalJoltage size js = foldr bankJoltage 0 js
-    where 
+  totalJoltage size = foldr bankJoltage 0
+    where
       accumulateBestJoltages _ _ 0 = []
-      accumulateBestJoltages bs s len = 
+      accumulateBestJoltages bs s len =
         let
           idx = foldl (\acc b -> if bs!!b > bs!!acc then b else acc) s [s..(length bs - len)]
         in
-          [bs!!idx] ++ (accumulateBestJoltages bs (idx+1) (len-1))
+          (bs!!idx) : accumulateBestJoltages bs (idx+1) (len-1)
       selectBankJoltage bs = accumulateBestJoltages bs 0 size
-      bankJoltage bs acc = acc + (fst (foldr (\j (sum,exp) -> (sum + j*10^exp, exp+1)) (0,0) (selectBankJoltage bs)))
+      bankJoltage bs acc = acc + fst (foldr (\j (sum,exp) -> (sum + j*10^exp, exp+1)) (0,0) (selectBankJoltage bs))

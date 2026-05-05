@@ -25,8 +25,8 @@ module AoC.Day02.ProductIds (IdRange(..), task1, task2) where
   -}
   task1 :: [IdRange] -> Int
   task1 is = collectWrongIds checkId is
-    where 
-      checkId i = 
+    where
+      checkId i =
         let
           idString = show i
           idMiddle = (length idString) `div` 2
@@ -40,13 +40,13 @@ module AoC.Day02.ProductIds (IdRange(..), task1, task2) where
   Examples: 1111111, 12121212, 909909
   -}
   task2 :: [IdRange] -> Int
-  task2 is = collectWrongIds checkId is
-    where 
-      checkId i = 
+  task2 = collectWrongIds checkId
+    where
+      checkId i =
         let
           idString = show i
-          idSubstrings = (length idString) `div` 2
-          checkIdParts acc ps = acc || foldl (\acc p -> acc && ps!!0 == p) True ps
+          idSubstrings = length idString `div` 2
+          checkIdParts acc ps = acc || foldl (\acc p -> acc && head ps == p) True ps
         in
           foldl (\acc i -> checkIdParts acc (chunksOf i idString)) False [1..idSubstrings]
 
@@ -55,7 +55,7 @@ module AoC.Day02.ProductIds (IdRange(..), task1, task2) where
   all made up IDs over all given ID ranges that need to be checked for them.
   -}
   collectWrongIds :: IdChecker -> [IdRange] -> Int
-  collectWrongIds c is = foldl accumulateRange 0 is
-    where 
+  collectWrongIds c = foldl accumulateRange 0
+    where
       addId acc id = if c id then acc + id else acc
       accumulateRange acc (s,e) = foldl addId acc [s..e]

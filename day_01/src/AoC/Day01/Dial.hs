@@ -21,8 +21,8 @@ module AoC.Day01.Dial (Rotation(..), task1, task2) where
   -}
   task1 :: [Rotation] -> SecretPassword
   task1 = accumulateSecretPassword dc 0 50
-    where 
-      dc = \_ d' _ a -> if d' == 0 then a + 1 else a
+    where
+      dc _ d' _ a = if d' == 0 then a + 1 else a
 
   {-|
   In task 2 we count each time the dial passes or ends up on the 0.
@@ -30,7 +30,7 @@ module AoC.Day01.Dial (Rotation(..), task1, task2) where
   -}
   task2 :: [Rotation] -> SecretPassword
   task2 = accumulateSecretPassword dc 0 50
-    where 
+    where
       dc d d' (RotateRight i) a = if d + i > 99 then a + ((d + i) `div` 100) else a
       dc d d' (RotateLeft i) a = a + fullRotations + additionalCrossing
         where
@@ -45,7 +45,7 @@ module AoC.Day01.Dial (Rotation(..), task1, task2) where
   accumulateSecretPassword :: DialCounter -> Int -> Dial -> [Rotation]  -> SecretPassword
   accumulateSecretPassword dc a d [] = a
   accumulateSecretPassword dc a d (r:rs) = accumulateSecretPassword dc a' d' rs
-    where 
+    where
       d' = turn r d
       a' = dc d d' r a
 
