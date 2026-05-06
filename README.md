@@ -9,7 +9,7 @@ Solutions for the following days exist in the following languages:
 | 1 | Haskell | Haskell |
 | 2 | Haskell | Haskell |
 | 3 | Haskell | Haskell |
-| 4 | Haskell | - |
+| 4 | Haskell | Haskell |
 | 5 | - | - |
 
 ## How do I run the solutions?

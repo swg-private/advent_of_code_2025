@@ -47,13 +47,13 @@ module AoC.Day04.PaperRolls (PaperRollWarehouse(..), task1, task2) where
       countPaperRolls w = V.sum $ V.map (length . V.filter (== '@')) w
 
   clearWarehouse :: PaperRollWarehouse -> Int -> PaperRollWarehouse
-  clearWarehouse a t = execState cw a
+  clearWarehouse a t = if checkWarehouse a t == 0 then a else clearWarehouse (clearStage a t) t
     where
-      cw :: State PaperRollWarehouse ()
-      cw = do
-        w <- get
-        put cw w
-        return ()
+      clearStage :: PaperRollWarehouse -> Int -> PaperRollWarehouse
+      clearStage w t = V.imap (V.imap . clearIfAccessible) w
+        where
+          clearIfAccessible :: Int -> Int -> Char -> Char
+          clearIfAccessible x y c = if isAccessible w (x, y) t then '.' else c
 
   checkWarehouse :: PaperRollWarehouse -> Int -> Int
   checkWarehouse warehouse t = length [(x, y) | x <- [0..V.length warehouse - 1], y <- [0..V.length (warehouse V.! 0) - 1], isAccessible warehouse (x, y) t]
