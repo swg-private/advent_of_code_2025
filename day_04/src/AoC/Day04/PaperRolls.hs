@@ -24,7 +24,6 @@ For the full task see [Advent of Code](https://adventofcode.com/2025/day/4).
 -}
 module AoC.Day04.PaperRolls (PaperRollWarehouse(..), task1, task2) where
 
-  import Control.Monad.State
   import qualified Data.Vector as V
   import Data.Maybe (catMaybes)
 
